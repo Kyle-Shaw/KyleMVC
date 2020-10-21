@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>WEATHER.O Journals</h1>
+    <p class="lead">Weather Observation Learning Journals</p>
+</div>
+<div class="row">
+    <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+        <img class="img-responsive" src="~/Content/Images/books.png"/>
+    </div>
+    <div class="col-sm-10 col-md-10 col-lg-10">
+        <h2>Explore Other's Libraries</h2>
+        <p>
+            Other user's journals will be made public to the main library. Explore the observations
+            of other users by selecting through dates and/or by selecting a State.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Explore", "Journal")">Explore &raquo;</a></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Create A Journal</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="@Url.Action("Editor", "Journal")">Develop a Journal &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Your Journal Library</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="@Url.Action("List", "Journal")">Library &raquo;</a></p>
+    </div>
+
+</div>

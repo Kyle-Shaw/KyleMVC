@@ -1,0 +1,24 @@
+﻿@model KyleMVC.Models.JournalModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <hr />
+    
+    <div class="">
+        @Html.DisplayFor(model => model.UsrText)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.User.User_Name)
+        @Html.DisplayFor(model => model.User.User_Name)
+    </div>
+
+<p>
+    @Html.ActionLink("Back to List", "Explore")
+</p>

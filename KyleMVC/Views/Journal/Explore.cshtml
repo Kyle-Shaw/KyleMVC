@@ -1,0 +1,100 @@
+﻿@model IEnumerable<KyleMVC.Models.JournalModels>
+
+@{
+    ViewBag.Title = "Explore";
+}
+
+<link rel="stylesheet" type="text/css"
+      href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" />
+<script type="text/javascript"
+        src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+
+<h2>Explore</h2>
+
+@using (@Html.BeginForm())
+{
+    <div class="form-group col-3 col-xs-6 col-sm-3">
+        <label for="test">Search:</label>
+        <input class="form-control" name="date" type="date" />
+    </div>
+    <div class="form-group hidden-xs col-2 col-sm-2">
+        <label for="#numResults">Items per Page:</label>
+        <select class="form-control" id="numOfItems" name="numOfItems">
+            <option id="numOfItems" value="5">5 </option>
+            <option id="numOfItems" value="15">15 </option>
+            <option id="numOfItems" value="25">25</option>
+            <option id="numOfItems" value="50">50</option>
+        </select>
+    </div>
+    <div class="form-group hidden-xs col-2 col-sm-2">
+        <label for="orderBy">Order:</label>
+        <select class="form-control" name="orderBy" id="orderBy">
+            <option id="orderBy" value="newest">Newest</option>
+            <option id="orderBy" value="oldest">Oldest</option>
+        </select>
+    </div>
+    <div class="form-group col-2 col-xs-5">
+        <label></label>
+        <input type="submit" class="form-control" />
+    </div>
+    <div class="col-md-1 col-lg-1 visible-md visible-lg"></div>
+    <div class="col-md-1 col-lg-1">
+        
+    </div>
+}
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="hidden-xs">
+                @Html.DisplayNameFor(model => model.User.User_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Post options:</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="hidden-xs test">
+                    @Html.DisplayFor(modelItem => item.User.User_Name)
+                </td>
+                <td>
+                    <div class="test">
+                        @Html.ActionLink(item.Title, "Details", new { journalDate = item.Date, user = item.UserID })
+                    </div>
+                    <br />
+                    @if (item.UsrText.Length > 250)
+                    {
+                        string substr = item.UsrText.Substring(0, 250) + " ...";
+                        @Html.DisplayFor(modelItem => substr)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.UsrText)
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    By: @Html.DisplayFor(modelItem => item.User.User_Name) on
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+<button class="btn btn-sm glyphicon-align-right glyphicon-arrow-right">Next</button>
